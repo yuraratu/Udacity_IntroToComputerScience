@@ -21,8 +21,6 @@ print(product_list([]))
 
 
 print('##################################################')
-
-
 ##########################################################
 
 
@@ -101,8 +99,6 @@ print(total_enrollment(usa_univs))
 
 
 print('##################################################')
-
-
 ##########################################################
 
 
@@ -438,16 +434,27 @@ def check_rows(p):
             if check_number not in i:
                 return False
             check_number -= 1
+    return True
 
 
 def transpose(p):
-
+    result = []
+    line = []
+    i = 0
+    while i < len(p):
+        for j in p:
+            line.append(j[i])
+        result.append(line)
+        line = []
+        i += 1
+    return result
 
 
 def check_sudoku(p):
-# check by rows
-# transpose
-# check by rows
+    check = check_rows(p)
+    p1 = transpose(p)
+    check1 = check_rows(p1)
+    return (check, check1) == (True, True)
 
 
 print(check_sudoku(incorrect))
