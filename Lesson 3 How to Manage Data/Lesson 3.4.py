@@ -141,33 +141,86 @@ print('##################################################')
 # Hint - "int()" turns a string's element into a number
 
 def numbers_in_lists(string):
-    final = [string[0]]
-    sublist = []
-    y = string[0]
+    final = [int(string[0])]
+    sub_list = []
+    max_value = int(string[0])
     i = 1
     while i < len(string):
-        if string[i] < string[i - 1]:
-            sublist += string[i]
+        if len(sub_list) == 0:
+            if int(string[i]) <= max_value:
+                sub_list.append(int(string[i]))
+            else:
+                final.append(int(string[i]))
+                max_value = int(string[i])
         else:
-            final.append(sublist)
-            sublist = []
+            if int(string[i]) <= max_value:
+                sub_list.append(int(string[i]))
+            else:
+                final.append(sub_list)
+                final.append(int(string[i]))
+                sub_list = []
+                max_value = int(string[i])
         i += 1
+    if len(sub_list) > 0:
+        final.append(sub_list)
     return final
 
-# testcases
-
-string = '543987'
-result = [5,[4,3],9,[8,7]]
-print(repr(string), numbers_in_lists(string) == result)
-
-string= '987654321'
-result = [9,[8,7,6,5,4,3,2,1]]
-print(repr(string), numbers_in_lists(string) == result)
+# test-cases
 
 string = '455532123266'
 result = [4, 5, [5, 5, 3, 2, 1, 2, 3, 2], 6, [6]]
 print(repr(string), numbers_in_lists(string) == result)
 
+string = '543987'
+result = [5, [4, 3], 9, [8, 7]]
+print(repr(string), numbers_in_lists(string) == result)
+
 string = '123456789'
 result = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 print(repr(string), numbers_in_lists(string) == result)
+
+string= '987654321'
+result = [9, [8, 7, 6, 5, 4, 3, 2, 1]]
+print(repr(string), numbers_in_lists(string) == result)
+
+
+
+print('##################################################')
+##########################################################
+
+
+# Crypto Analysis: Frequency Analysis
+#
+# To analyze encrypted messages, to find out information about the possible
+# algorithm or even language of the clear text message, one could perform
+# frequency analysis. This process could be described as simply counting
+# the number of times a certain symbol occurs in the given text.
+# For example:
+# For the text "test" the frequency of 'e' is 1, 's' is 1 and 't' is 2.
+#
+# The input to the function will be an encrypted body of text that only contains
+# the lowercase letters a-z.
+# As output you should return a list of the normalized frequency
+# for each of the letters a-z.
+# The normalized frequency is simply the number of occurrences, i,
+# divided by the total number of characters in the message, n.
+
+def freq_analysis(message):
+    ##
+    # Your code here
+    ##
+    return freq_list
+
+
+
+#Tests
+
+print freq_analysis("abcd")
+#>>> [0.25, 0.25, 0.25, 0.25, 0.0, ..., 0.0]
+
+print freq_analysis("adca")
+#>>> [0.5, 0.0, 0.25, 0.25, 0.0, ..., 0.0]
+
+print freq_analysis('bewarethebunnies')
+#>>> [0.0625, 0.125, 0.0, 0.0, ..., 0.0]
+
