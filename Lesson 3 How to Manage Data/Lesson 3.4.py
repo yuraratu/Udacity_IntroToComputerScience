@@ -205,22 +205,23 @@ print('##################################################')
 # The normalized frequency is simply the number of occurrences, i,
 # divided by the total number of characters in the message, n.
 
+
 def freq_analysis(message):
-    ##
-    # Your code here
-    ##
+    abc = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
+           'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+    freq_list = []
+    length = len(message)
+    for i in abc:
+        freq_list.append(message.count(i) / length)
     return freq_list
 
+# Tests
 
+print(freq_analysis("abcd"))
+# >>> [0.25, 0.25, 0.25, 0.25, 0.0, ..., 0.0]
 
-#Tests
+print(freq_analysis("adca"))
+# >>> [0.5, 0.0, 0.25, 0.25, 0.0, ..., 0.0]
 
-print freq_analysis("abcd")
-#>>> [0.25, 0.25, 0.25, 0.25, 0.0, ..., 0.0]
-
-print freq_analysis("adca")
-#>>> [0.5, 0.0, 0.25, 0.25, 0.0, ..., 0.0]
-
-print freq_analysis('bewarethebunnies')
-#>>> [0.0625, 0.125, 0.0, 0.0, ..., 0.0]
-
+print(freq_analysis('bewarethebunnies'))
+# >>> [0.0625, 0.125, 0.0, 0.0, ..., 0.0]
