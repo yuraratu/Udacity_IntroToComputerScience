@@ -51,11 +51,13 @@ def convert_seconds(n):
 
 
 def download_time(size, s_unit, bandwidth, b_unit):
-    mults = [['kb', 2 ** 10], ['Mb', 2 ** 20], ['Gb', 2 ** 30], ['Tb', 2 ** 40],
-             ['kB', 2 ** 10 * 8], ['MB', 2 ** 20 * 20], ['GB', 2 ** 30 * 8], ['TB', 2 ** 40 * 8]]
+    units = ['kb', 'Mb', 'Gb', 'Tb', 'kB', 'MB', 'GB', 'TB']
 
-    size_bytes = size * mults[1][mults[0].index(s_unit)]
-    bandwidth_bytes = bandwidth * mults[1][mults[0].index(s_unit)]
+    mults = [2 ** 10, 2 ** 20, 2 ** 30, 2 ** 40,
+             2 ** 10 * 8, 2 ** 20 * 8, 2 ** 30 * 8, 2 ** 40 * 8]
+
+    size_bytes = size * mults[units.index(s_unit)]
+    bandwidth_bytes = bandwidth * mults[units.index(b_unit)]
 
     time = size_bytes / bandwidth_bytes
 
@@ -79,3 +81,6 @@ print(download_time(10,'MB', 2, 'kB'))
 
 print(download_time(10,'MB', 2, 'kb'))
 # >>> 11 hours, 22 minutes, 40 seconds  # 40.0 seconds is also acceptable
+
+print(download_time(11,'GB', 5, 'MB'))
+# >>> 0 hours, 37 minutes, 32.8 seconds
