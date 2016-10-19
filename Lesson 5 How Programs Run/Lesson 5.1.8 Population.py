@@ -23,3 +23,5 @@ population['London'] = 8.5
 print(population['London'])
 
 print('London' in population)
+
+print(population)

@@ -1,6 +1,6 @@
 # [Double Gold Star] Memoization is a way to make code run faster by saving
 # previously computed results.  Instead of needing to recompute the value of an
-# expression, a memoized computation first looks for the value in a cache of
+# expression, a memorized computation first looks for the value in a cache of
 # pre-computed values.
 
 # Define a procedure, cached_execution(cache, proc, proc_input), that takes in
@@ -12,6 +12,15 @@
 
 
 def cached_execution(cache, proc, proc_input):
+    if proc in cache:
+        if proc_input in cache[proc]:
+            return cache[proc][proc_input]
+        else:
+            cache[proc][proc_input] = proc(proc_input)
+            return cache[proc][proc_input]
+    else:
+        cache[proc] = {proc_input: proc(proc_input)}
+        return cache[proc][proc_input]
 
 
 # Your code here
@@ -21,8 +30,7 @@ def cached_execution(cache, proc, proc_input):
 
 
 def factorial(n):
-    print
-    "Running factorial"
+    print("Running factorial")
     result = 1
     for i in range(2, n + 1):
         result = result * i
@@ -31,14 +39,11 @@ def factorial(n):
 
 cache = {}  # start cache as an empty dictionary
 ### first execution (should print out Running factorial and the result)
-print
-cached_execution(cache, factorial, 50)
+print(cached_execution(cache, factorial, 50))
 
-print
-"Second time:"
+print("Second time:")
 ### second execution (should only print out the result)
-print
-cached_execution(cache, factorial, 50)
+print(cached_execution(cache, factorial, 50))
 
 
 # Here is a more interesting example using cached_execution
@@ -55,5 +60,4 @@ def cached_fibo(n):
 
 cache = {}  # new cache for this procedure
 # do not try this at home...at least without a cache!
-print
-cached_execution(cache, cached_fibo, 100)
+print(cached_execution(cache, cached_fibo, 10))
